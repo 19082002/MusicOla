@@ -1,0 +1,27 @@
+.artistcontainer{
+
+}
+.artistcontainer .card{
+    position: relative;
+display: grid;
+grid-template-columns: auto auto auto;
+}
+.artistcontainer .card .image{
+    width:150px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.artistcontainer .card .image img{
+    width:150px;
+    height: 150px;
+    border-radius: 50%;
+}
+.artistcontainer .card .image h1{
+font-size: medium;
+}
+@media screen and (max-width:450px) {
+    .artistcontainer .card{
+        display: block;
+    }
+}

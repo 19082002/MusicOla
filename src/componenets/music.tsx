@@ -1,0 +1,175 @@
+import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  Heart,
+  SkipBack,
+  SkipForward,
+  Pause,
+  Volume2,
+  Repeat2,
+  ArrowLeft,
+  Play,
+} from "lucide-react";
+import "../css/music.css";
+import { Link } from "react-router-dom";
+import { useAudioPlayerContext } from "./audioplay";
+function Music() {
+  // const {  } = useAudioPlayerContext();
+  const {
+    currentTrack,
+    progressBarRef,
+    audioRef,
+    timeProgress,
+    duration,
+    setDuration,
+    setTimeProgress,
+    isPlaying,
+    setIsPlaying
+  } = useAudioPlayerContext();
+  const [isRepeat, setIsRepeat] = useState<boolean>(false);
+  const handleProgressChange = () => {
+    if (audioRef.current && progressBarRef.current) {
+      const newTime = Number(progressBarRef.current.value);
+      audioRef.current.currentTime = newTime;
+      setTimeProgress(newTime);
+      progressBarRef.current.style.setProperty(
+        "--range-progress",
+        `${(newTime / duration) * 100}%`
+      );
+    }
+  };
+  const updateProgress = useCallback(() => {
+    // console.log(audioRef.current.currentTime,duration)
+    if (audioRef.current && progressBarRef.current && duration) {
+      const currentTime = audioRef.current.currentTime;
+      setTimeProgress(currentTime);
+      progressBarRef.current.value = currentTime.toString();
+      console.log(audioRef);
+      progressBarRef.current.style.setProperty(
+        "--range-progress",
+        `${(currentTime / duration) * 100}%`
+      );
+    }
+    else console.log("uyu")
+  }, [duration, setTimeProgress, audioRef, progressBarRef]);
+  const startAnimation = useCallback(() => {
+    if (audioRef.current && progressBarRef.current && duration) {
+      const animate = () => {
+        updateProgress();
+        playAnimationRef.current = requestAnimationFrame(animate);
+        if((audioRef.current.currentTime / duration) * 100==100)
+        console.log(2)
+      }; 
+      playAnimationRef.current = requestAnimationFrame(animate);
+      console.log(3);
+    }
+  }, [updateProgress, duration, audioRef, progressBarRef]);
+
+  const playAnimationRef = useRef<number | null>(null);
+  useEffect(() => {
+    audioRef.current.currentTime = timeProgress
+    if((audioRef.current.currentTime / duration)==1){
+      setTimeProgress(0)
+      setIsPlaying(false)
+      console.log("ty")
+    }
+    if (isPlaying) { 
+      audioRef.current?.play();
+      startAnimation();
+    } else {
+      audioRef.current?.pause();
+      if (playAnimationRef.current !== null) {
+        cancelAnimationFrame(playAnimationRef.current);
+        playAnimationRef.current = null;
+      }
+      updateProgress();
+    }
+
+    return () => {
+      if (playAnimationRef.current !== null) {
+        cancelAnimationFrame(playAnimationRef.current);
+      }
+    };
+  }, [isPlaying, startAnimation, updateProgress, audioRef]);
+
+  const formatTime = (time: number | undefined): string => {
+    if (typeof time === "number" && !isNaN(time)) {
+      const minutes = Math.floor(time / 60);
+      const seconds = Math.floor(time % 60);
+      // Convert to string and pad with leading zeros if necessary
+      const formatMinutes = minutes.toString().padStart(2, "0");
+      const formatSeconds = seconds.toString().padStart(2, "0");
+      return `${formatMinutes}:${formatSeconds}`;
+    }
+    return "00:00";
+  };
+  const onLoadedMetadata = () => {
+    const seconds = audioRef.current?.duration;
+    if (seconds !== undefined) {
+      setDuration(seconds);
+      if (progressBarRef.current) {
+        progressBarRef.current.max = seconds.toString();
+      }
+    }
+  };
+  return (
+    <>
+      <div className="musiccontain">
+        <div className="musicmain">
+          <Link to="/">
+            <ArrowLeft className="back"/>
+          </Link>
+          <div className="card">
+            <div className="image">
+              <img src={currentTrack.thumbnail} />
+            </div>
+          </div>
+          <div className="middle">
+            <div className="name">
+              <div className="heading">
+                <p>{currentTrack.title}</p>
+                <p className="author">{currentTrack.author}</p>
+              </div>
+              <Heart style={{ width: "20px" }} />
+            </div>
+            <div className="progressbar">
+              <span>{formatTime(timeProgress)}</span>
+              <input
+                ref={progressBarRef}
+                className="range"
+                type="range"
+                defaultValue="0"
+                onChange={handleProgressChange}
+              />
+              <span>{formatTime(duration)}</span>
+            </div>
+            <div className="btns">
+              <Repeat2
+                style={{ width: "20px" }}
+                onClick={() => setIsRepeat((prev) => !prev)}
+              />
+              <SkipBack style={{ width: "20px" }} />
+              <button onClick={() => setIsPlaying((prev) => !prev)}>
+                {isPlaying ? (
+                  <Pause className="pause" style={{ width: "20px" }} />
+                ) : (
+                  <Play className="pause" style={{ width: "20px" }} />
+                )}
+              </button>
+
+              <SkipForward style={{ width: "20px" }} />
+              <Volume2 style={{ width: "20px" }} />
+            </div>
+          </div>
+          <div className="lyrics">Lyrics</div>
+        </div>
+      </div>
+      <audio
+        src={currentTrack.src}
+        ref={audioRef}
+        onLoadedMetadata={onLoadedMetadata}
+      />
+    </>
+  );
+}
+
+export default Music;

@@ -1,0 +1,71 @@
+/* .recentc{
+    margin-bottom: 50px;
+    margin-top: 70px;
+} */
+.recentc .card{
+    position: relative;
+    display:grid;
+    gap:50px;
+    grid-template-columns:auto auto;
+    
+    /* column-gap: 2vw; */
+    /* overflow-x: auto; */
+    /* overflow-y: hidden; */
+    /* position: relative; */
+}
+.recentc .card .playedcard{
+    cursor: pointer;
+    /* width: 50%; */
+    /* min-width: 250px; */
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    /* margin: 0 5px; */
+}
+.recentc .playedcard img{
+   display: block;
+    height:auto;
+    width: 100%;
+    
+    /* border-radius: 15px; */
+}
+.recentc .playedcard .intro{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:linear-gradient(to bottom,rgb(61, 59, 59),rgba(128, 128, 128, 0.132),var(--shadow-color));
+    overflow: hidden;
+    height: 0;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    transition: -5s ease;
+    }
+.recentc .playedcard:hover .intro{
+    height: 90%;
+}
+.recentc .playedcard h1{
+    /* width: 100%; */
+    /* font-size: 8vw; */
+    color: black;
+    font-weight: 800;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.recentc .playedcard p{
+    text-align: center;
+    color: black;
+    margin-top: 10%;
+    width:70%;
+}
+@media screen and (max-width:450px) {
+    .recentc .card{
+        display: block;
+        /* grid-template-columns: auto; */
+    }
+}
+@media screen and (min-width:900px) {
+    .recentc .card{
+        grid-template-columns: auto auto auto;
+    }
+}

@@ -1,0 +1,130 @@
+.musiccontain{
+    width:100vw;
+    height:100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.musiccontain .progressbar{
+display: flex;
+justify-content: center;
+align-items: center;
+gap:5px;
+margin:20px 0;
+}
+.musiccontain .progressbar .range{
+    width: 90%;
+}
+.musicmain{
+    /* width:500px; */
+    min-width: 250px;
+    background:linear-gradient(to right, var(--primary-color),var(--background-color));
+    height: 80vh;
+    min-height:560px;
+    border-radius: 20px;
+    padding: 30px 10px;
+    position: relative;
+}
+.musicmain .card{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.musicmain .card .image{
+    padding:0 10px;
+    margin-bottom: 50px;
+}
+.musicmain .card .image img{
+    width:250px;
+    height: 40vh;
+    border-radius: 10px;
+    box-shadow: 0.1rem 0.2rem 0.5rem var(--shadow-color);
+}
+.musicmain .middle .name{
+    display: flex;
+    justify-content: space-between;
+}
+.musiccontain .musicmain .btns{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 12px;
+}
+.musiccontain .musicmain .btns .pause{
+    background-color: var(--shadow-color);
+    border-radius: 50%;
+    padding: 3px 5px;
+    color: black;
+    fill:black;
+}
+.musiccontain .musicmain .lyrics{
+    width: 100%;
+    margin-bottom: 0;
+    position: absolute;
+    bottom:0;
+    left: 0;
+    background:linear-gradient(to right,rgba(0, 0, 0, 0.649), var(--shadow-color));
+    height:50px;
+    display: flex;   
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 20px;
+}
+@media screen and (min-width:900px) {
+    .musiccontain{
+        margin: 0;
+        margin-top: 50px;
+        width: 15vw;
+        height: 100vh;
+        display: block;
+        position: fixed;
+        padding: 5px;
+        /* border: 2px solid green; */
+        border-left: 1px solid var(--shadow-color);
+        /* background-color: var(--primary-color); */
+    }
+    .musiccontain .musicmain{
+        padding:0;
+        margin: 0;
+        width: 15vw;
+        background: none;
+        min-width:auto;
+        
+    }
+    .musicmain .back{
+        display: none;
+    }
+    .musicmain .card{
+        display: block;
+
+    }
+    .musicmain .card .image{
+        padding: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .musicmain .card .image img{
+        width:14vw;
+        height: 35vh;
+        box-shadow: none;
+    }
+
+    .musicmain .progressbar{
+        /* width: 0; */
+        display: none;
+    }
+    .middle .btns,.middle button{
+        width:0 ;
+        display: none;
+    }
+
+    .musicmain .middle{
+        padding: 0 5px;
+        border-bottom: 2px solid orange;
+    }
+
+}
+
+  
