@@ -1,38 +1,43 @@
 
 import { useLocation } from "react-router-dom"
 import "../css/recent.css"
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { useAudioPlayerContext } from "./audioplay";
 function RecentPlayed() {
-  const{setCurrentTrack,currentTrack,isPlaying,setIsPlaying}=useAudioPlayerContext();
-  const mykey=import.meta.env.VITE_API_KEY;
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    const requestOptions: any = {
-      method: "get",
-      headers: myHeaders,
-      redirect: "follow",
-    };
-    type tracktype = {
-      preview_url:string;
-      name: string;
-      album:{images: {
-        height: number;
-        url: string;
-        width: number;
-      }[]};
-    };
-    type recenttype={
-      track:{
-        name: string;
-        album:{images: {
-          height: number;
-          url: string;
-          width: number;
-        }[]};
-        preview_url:string;
-      };
-    }
+  const{setCurrentTrack,setIsPlaying}=useAudioPlayerContext();
+  // const mykey=import.meta.env.VITE_API_KEY;
+  //   const myHeaders = new Headers();
+  //   myHeaders.append("Content-Type", "application/json");
+  //   type requesttype={
+  //         method: string,
+  //         headers: Headers,
+  //         redirect: string,
+  //       }
+  //   const requestOptions: requesttype = {
+  //     method: "get",
+  //     headers: myHeaders,
+  //     redirect: "follow",
+  //   };
+  //   type tracktype = {
+  //     preview_url:string;
+  //     name: string;
+  //     album:{images: {
+  //       height: number;
+  //       url: string;
+  //       width: number;
+  //     }[]};
+  //   };
+  //   type recenttype={
+  //     track:{
+  //       name: string;
+  //       album:{images: {
+  //         height: number;
+  //         url: string;
+  //         width: number;
+  //       }[]};
+  //       preview_url:string;
+  //     };
+  //   }
     async function trackResponse(nam:string) {
       // const response2 = await fetch(
       //   `https://v1.nocodeapi.com/bristi/spotify/MwEmUsCFfwFSAosj/search?q=${nam}&type=track`,
@@ -42,7 +47,7 @@ function RecentPlayed() {
       // setData(data2.tracks.items)
       // console.log(data2.tracks.items)
       // return data2.tracks.items;
-      console.log(1)
+      console.log(nam)
     }
     async function recently(){
       // const response=await fetch(
@@ -50,9 +55,9 @@ function RecentPlayed() {
       // )
       // const result=await response.json();
       // setData(result.items)
-      console.log(mykey)
+      console.log(2)
     }
-  const [data,setData]=useState<recenttype[] | tracktype[]>([])
+  // const [data,setData]=useState<recenttype[] | tracktype[]>([])
   const location = useLocation()
   const props=location.state
   useEffect(() => {

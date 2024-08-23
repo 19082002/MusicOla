@@ -17,6 +17,11 @@ import {
   interface AudioPlayerContextType {
     currentTrack: Track;
     setCurrentTrack: Dispatch<SetStateAction<Track>>;
+    setTimeProgress:Dispatch<SetStateAction<number>>,
+    setDuration:Dispatch<SetStateAction<number>>,
+    setIsPlaying:Dispatch<SetStateAction<boolean>>,
+      audioRef:React.RefObject<HTMLAudioElement>,
+      progressBarRef:React.RefObject<HTMLInputElement>,
     isPlaying:boolean,
     duration: number
     timeProgress:number

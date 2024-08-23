@@ -23,7 +23,7 @@ function Music() {
     setDuration,
     setTimeProgress,
     isPlaying,
-    setIsPlaying
+    setIsPlaying,
   } = useAudioPlayerContext();
   const [isRepeat, setIsRepeat] = useState<boolean>(false);
   const handleProgressChange = () => {
@@ -39,6 +39,7 @@ function Music() {
   };
   const updateProgress = useCallback(() => {
     // console.log(audioRef.current.currentTime,duration)
+    if (isRepeat) setIsRepeat(false);
     if (audioRef.current && progressBarRef.current && duration) {
       const currentTime = audioRef.current.currentTime;
       setTimeProgress(currentTime);
@@ -48,17 +49,14 @@ function Music() {
         "--range-progress",
         `${(currentTime / duration) * 100}%`
       );
-    }
-    else console.log("uyu")
+    } else console.log("uyu");
   }, [duration, setTimeProgress, audioRef, progressBarRef]);
   const startAnimation = useCallback(() => {
     if (audioRef.current && progressBarRef.current && duration) {
       const animate = () => {
         updateProgress();
         playAnimationRef.current = requestAnimationFrame(animate);
-        if((audioRef.current.currentTime / duration) * 100==100)
-        console.log(2)
-      }; 
+      };
       playAnimationRef.current = requestAnimationFrame(animate);
       console.log(3);
     }
@@ -66,13 +64,8 @@ function Music() {
 
   const playAnimationRef = useRef<number | null>(null);
   useEffect(() => {
-    audioRef.current.currentTime = timeProgress
-    if((audioRef.current.currentTime / duration)==1){
-      setTimeProgress(0)
-      setIsPlaying(false)
-      console.log("ty")
-    }
-    if (isPlaying) { 
+    audioRef.current!.currentTime = timeProgress;
+    if (isPlaying) {
       audioRef.current?.play();
       startAnimation();
     } else {
@@ -116,7 +109,7 @@ function Music() {
       <div className="musiccontain">
         <div className="musicmain">
           <Link to="/">
-            <ArrowLeft className="back"/>
+            <ArrowLeft className="back" />
           </Link>
           <div className="card">
             <div className="image">

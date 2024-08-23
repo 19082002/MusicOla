@@ -1,4 +1,4 @@
-import {  Search, CrossIcon } from "lucide-react";
+import {  Search} from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 function Searchcom(){
