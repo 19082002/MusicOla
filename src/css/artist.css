@@ -1,10 +1,12 @@
 .artistcontainer{
-
+    justify-content: center;
+    align-items: center;
 }
 .artistcontainer .card{
     position: relative;
 display: grid;
 grid-template-columns: auto auto auto;
+
 }
 .artistcontainer .card .image{
     width:150px;
@@ -22,6 +24,14 @@ font-size: medium;
 }
 @media screen and (max-width:450px) {
     .artistcontainer .card{
-        display: block;
+        grid-template-columns: auto auto;
+    }
+}
+@media screen and (max-width:450px) {
+    .artistcontainer .card{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 }

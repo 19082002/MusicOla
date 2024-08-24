@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import { useAudioPlayerContext } from "./audioplay";
 import { useCallback, useEffect, useRef } from "react";
 function Playcom() {
+  const size = window.innerWidth;
   const {
     currentTrack,
     isPlaying,
@@ -94,6 +95,7 @@ function Playcom() {
   return (
     <>
       {/* <audio src={currentTrack.src} ref={audioRef}/> */}
+
       <div className="playmain">
         <Link to="/music">
           <div className="image">
@@ -144,6 +146,7 @@ function Playcom() {
         ref={audioRef}
         onLoadedMetadata={onLoadedMetadata}
       />
+      {size<450?"":""}
       {/* </Link> */}
     </>
   );

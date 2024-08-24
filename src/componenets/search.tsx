@@ -1,6 +1,7 @@
 import {  Search} from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import "../css/search.css"
 function Searchcom(){
   const [name,setName]=useState<string>("yu")
 
@@ -9,7 +10,7 @@ function Searchcom(){
 
   return (
     <>
-    {/* <div className="searchbar"> */}
+    <div className="searchbox">
              <input
               type="text"
               placeholder="Search by artists songs or albums"
@@ -21,7 +22,7 @@ function Searchcom(){
               <Search style={{ width: "18px" }}  />
               </Link>
             </label>
-            {/* </div> */}
+            </div>
             {/* <div >
               <div className="open">
               <label>

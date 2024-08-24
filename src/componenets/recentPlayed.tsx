@@ -88,7 +88,7 @@ console.log(3)
                 <p className="releaseDate">23jan 2023</p>
                 </div>
               </div> */}
-              <div className="playedcard" onClick={()=>updatemusic('../src/b.mp3')}>
+              <div className="playedcard" onClick={()=>updatemusic('./audio/b.mp3')}>
                 <img src="./images/ply.jpg" />
                 <div className="intro">
                 <h4>Coffe House er sei</h4>

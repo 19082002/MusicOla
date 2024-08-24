@@ -4,7 +4,7 @@ import "../css/navbar.css";
 import Footer from "./footer.tsx";
 import Sidebar from "./sidebar.tsx";
 import Music from "./music.tsx";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 function Navbar() {
   const size = window.innerWidth;
   return (
@@ -32,7 +32,7 @@ function Navbar() {
           {size >= 900 && <Music />}
           </div>
         <div className="playy">
-          <Playcom />
+        {size <450 ?<Link to="/music"><Playcom /></Link>:<Playcom />} 
         </div>
       </div>
 

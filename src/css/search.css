@@ -1,0 +1,33 @@
+.searchbox{
+    /* margin-left: 10px; */
+    border:2px solid rgba(69, 69, 69, 0.471);
+    padding: 0px;
+    text-align: center;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.searchbox input{
+    width:35vw;
+    background: none;
+    border: none;
+    color:var(--font-primary-color);
+    padding:5px;
+}
+input:focus{
+    outline: none;
+}
+::placeholder{
+    color:var(--font-secondary-color)
+}
+@media screen and (max-width:450px) {
+    .searchbox{
+        width:97vw;
+        margin:5px;
+    }
+    .searchbox input{
+        width:90vw;
+        
+    }
+}

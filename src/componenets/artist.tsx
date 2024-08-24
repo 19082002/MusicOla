@@ -7,7 +7,7 @@ function Artist() {
         <div className="card">
             <div className="image">
                 <img src="./images/ply.jpg"/>
-                <h1>manna</h1>
+                <h1>Manna Dey</h1>
             </div>
             <div className="image">
                 <img src="./images/ply.jpg"/>

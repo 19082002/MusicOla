@@ -29,25 +29,7 @@
     margin-left: 5px;
     border: 2px solid var(--secondary-color);
 }
-.searchbox{
-    /* margin-left: 10px; */
-    border:2px solid rgba(69, 69, 69, 0.471);
-    padding: 2px;
-    text-align: center;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-.searchbox input{
-    width:35vw;
-    background: none;
-    border: none;
-    color:var(--font-primary-color);
-}
-::placeholder{
-    color:var(--font-secondary-color)
-}
+
 .phone .my{
     display: flex;
     justify-content: space-between;
@@ -56,7 +38,9 @@
     text-align: center;
     background-color: black;
 }
-
+.phone .my .active{
+    border-bottom: 1px solid var(--secondary-color);
+}
 .phone .my .column{
     margin:0 8px ;
     padding:10px;
