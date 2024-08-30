@@ -1,0 +1,73 @@
+.listcontainer {
+  display: flex;
+  padding: 12px;
+}
+.listcontainer .albumimage {
+  width: 30vw;
+  position: fixed;
+  height: 100vh;
+  /* position: absolute; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.listcontainer .albumimage .lefticon {
+  position: absolute;
+  top: 0;
+  left: 10px;
+}
+.listcontainer .albumimage img {
+  width: 100%;
+  height: auto;
+  box-shadow: 0.1rem 0.1rem 0.5rem var(--shadow-color);
+}
+.listcontainer .card {
+  margin-left: 30vw;
+  position: relative;
+  padding: 12px;
+  width: 70vw;
+}
+.listcontainer .image {
+  /* height:20px */
+}
+.listcontainer .image img {
+  width: 10vw;
+  height: auto;
+}
+.listcontainer .playedcard {
+  /* margin:0 10px; */
+  margin-top: 5px;
+  padding: 10px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 12px;
+  /* border-bottom: 0.1px solid var(--shadow-color); */
+  background: rgba(63, 62, 62, 0.277);
+}
+.listcontainer .playedcard img {
+  width: 10vw;
+  height: 10vw;
+  border-radius: 50%;
+}
+.listcontainer .playedcard .icon {
+  display: flex;
+}
+@media screen and (max-width: 450px) {
+  .listcontainer {
+    display: block;
+  }
+  .listcontainer .albumimage {
+    width: 90vw;
+    height: 30vh;
+    position: relative;
+  }
+  .listcontainer .card {
+    margin: 0;
+    width: 90vw;
+  }
+  .listcontainer .albumimage img {
+    height: 30vh;
+  }
+}

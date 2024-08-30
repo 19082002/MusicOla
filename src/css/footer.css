@@ -1,35 +1,34 @@
-.phone{
-    display: flex;
-    flex-direction: column;
+.phone {
+  display: flex;
+  flex-direction: column;
 }
 
-.phone .all{
-    background: var(--primary-color);
-    position:fixed;
-    bottom: 0;
-    width:100%;
-    height:8vh;
-    z-index: 100;
-   /* padding: 0; */
+.phone .all {
+  background: var(--primary-color);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 8vh;
+  z-index: 100;
+  /* padding: 0; */
 }
-.phone .all .list{
-   text-align: center;
-   display: flex;
-   margin: 0 2px;
-   justify-content: space-between;
-   align-items: end;
-   /* margin-top: 0; */
+.phone .all .list {
+  text-align: center;
+  display: flex;
+  margin: 0 2px;
+  justify-content: space-between;
+  align-items: end;
+  /* margin-top: 0; */
 }
-.phone .all li{
+.phone .all li {
+}
+.phone .all li span {
+  display: flex;
+  flex-direction: column;
+}
 
-}
-.phone .all li span{
-    display: flex;
-    flex-direction: column;
-}
-
-.phone .all .active{
-    border-bottom: 2px solid var(--shadow-color);
-    /* background:linear-gradient(to right,var(--shadow-color),rgb(40, 39, 39),rgb(28, 27, 27),var(--primary-color)); */
-    color:var(--shadow-color);
+.phone .all .active {
+  border-bottom: 2px solid var(--shadow-color);
+  /* background:linear-gradient(to right,var(--shadow-color),rgb(40, 39, 39),rgb(28, 27, 27),var(--primary-color)); */
+  color: var(--shadow-color);
 }

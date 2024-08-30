@@ -28,11 +28,15 @@ function Navbar() {
         <div className="topcontainer">
           <Top />
         </div>
-        <div className="musiccc">
-          {size >= 900 && <Music />}
-          </div>
+        <div className="musiccc">{size >= 900 && <Music />}</div>
         <div className="playy">
-        {size <450 ?<Link to="/music"><Playcom /></Link>:<Playcom />} 
+          {size < 450 ? (
+            <Link to="/music">
+              <Playcom />
+            </Link>
+          ) : (
+            <Playcom />
+          )}
         </div>
       </div>
 

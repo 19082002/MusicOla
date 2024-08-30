@@ -1,127 +1,127 @@
-
-import { useLocation } from "react-router-dom"
-import "../css/recent.css"
-import { useEffect} from "react";
+import Loading from "./loading";
+import { useLocation } from "react-router-dom";
+import "../css/recent.css";
+import { useEffect, useState } from "react";
 import { useAudioPlayerContext } from "./audioplay";
 function RecentPlayed() {
-  const{setCurrentTrack,setIsPlaying}=useAudioPlayerContext();
-  // const mykey=import.meta.env.VITE_API_KEY;
-  //   const myHeaders = new Headers();
-  //   myHeaders.append("Content-Type", "application/json");
-  //   type requesttype={
-  //         method: string,
-  //         headers: Headers,
-  //         redirect: string,
-  //       }
-  //   const requestOptions: requesttype = {
-  //     method: "get",
-  //     headers: myHeaders,
-  //     redirect: "follow",
-  //   };
-  //   type tracktype = {
-  //     preview_url:string;
-  //     name: string;
-  //     album:{images: {
-  //       height: number;
-  //       url: string;
-  //       width: number;
-  //     }[]};
-  //   };
-  //   type recenttype={
-  //     track:{
-  //       name: string;
-  //       album:{images: {
-  //         height: number;
-  //         url: string;
-  //         width: number;
-  //       }[]};
-  //       preview_url:string;
-  //     };
-  //   }
-    async function trackResponse(nam:string) {
-      // const response2 = await fetch(
-      //   `https://v1.nocodeapi.com/bristi/spotify/MwEmUsCFfwFSAosj/search?q=${nam}&type=track`,
-      //   requestOptions
-      // )
-      // const data2 =await response2.json();
-      // setData(data2.tracks.items)
-      // console.log(data2.tracks.items)
-      // return data2.tracks.items;
-      console.log(nam)
-    }
-    async function recently(){
-      // const response=await fetch(
-      //   `https://v1.nocodeapi.com/userrest/spotify/tsNHGtPnhcJiBgMj/recentlyPlayed?limit=50`
-      // )
-      // const result=await response.json();
-      // setData(result.items)
-      console.log(2)
-    }
-  // const [data,setData]=useState<recenttype[] | tracktype[]>([])
-  const location = useLocation()
-  const props=location.state
-  useEffect(() => {
-    if(props.option==1)trackResponse(props.data)
-      if(props.option==2)recently()
-  }, [props])
+  const { setCurrentTrack, setIsPlaying, setTimeProgress } =
+    useAudioPlayerContext();
+  const mykey = import.meta.env.VITE_API_KEY;
+  const user = "sunenjoy";
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  const requestOptions: RequestInit = {
+    method: "get",
+    headers: myHeaders,
+    redirect: "follow",
+  };
+  type tracktype = {
+    preview_url: string;
+    name: string;
+    album: {
+      images: {
+        height: number;
+        url: string;
+        width: number;
+      }[];
+    };
+  };
+  type recentType = {
+    track: tracktype;
+  };
+  async function trackResponse(nam: string) {
+    await fetch(
+      `https://v1.nocodeapi.com/${user}/spotify/${mykey}/search?q=${nam}&type=track`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => setData(result.tracks.items))
+      .then(() => setFlag(true))
+      .then(() => console.log("recentlytrack"));
+    console.log(nam);
+  }
 
-  const updatemusic=(url:string)=>{
+  async function recently() {
+    await fetch(
+      `https://v1.nocodeapi.com/${user}/spotify/${mykey}/recentlyPlayed?limit=50`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => setData(result.items))
+      .then(() => setFlag(true))
+      .then(() => console.log("recently"));
+  }
+  const [data, setData] = useState<(recentType | tracktype)[]>([]);
+  const [flag, setFlag] = useState(false);
+  const location = useLocation();
+  const props = location.state;
+  useEffect(() => {
+    if (props.option == 1) trackResponse(props.data);
+    if (props.option == 2) recently();
+  }, [props]);
+
+  const updatemusic = (
+    url: string,
+    name: string,
+    author: string,
+    image: string
+  ) => {
+    // setIsPlaying(false)
     setCurrentTrack({
-      title:"props",
-      src:url,
-      author:"piu",
-      thumbnail:"./images/artist.jpg"
-    })
+      title: name,
+      src: url,
+      author: author,
+      thumbnail: image,
+    });
+    setTimeProgress(0);
     setIsPlaying(true);
-console.log(3)
-}
+    console.log(3);
+  };
+
   return (
     <>
-    {/* {data[0] && */}
-            <div className="recentc custom">
-              {/* <h3>Recently Played</h3> */}
-              <div className="card" >
-              {/* <div className="playedcard">
-                <img src={data[0].track.album.images[0].url} />
-                <div className="intro">
-                <h4>{data[0].track.name}</h4>
-                <p className="releaseDate">23jan 2023</p>
-                </div>
-              </div> */}
-              <div className="playedcard" onClick={()=>updatemusic('./audio/b.mp3')}>
-                <img src="./images/ply.jpg" />
-                <div className="intro">
-                <h4>Coffe House er sei</h4>
-                <p className="releaseDate">23jan 2023</p>
-                </div>
-              </div>
-              <div className="playedcard">
-                <img src="./images/ply.jpg" />
-                <div className="intro">
-                <h4>Coffe House er sei</h4>
-                <p className="releaseDate">23jan 2023</p>
-                </div>
-              </div>
-              <div className="playedcard">
-                <img src="./images/ply.jpg" />
-                <div className="intro">
-                <h4>Coffe House er sei</h4>
-                <p className="releaseDate">23jan 2023</p>
-                </div>
-              </div>
-              {/* <div className="playedcard">
-              <img src={data[19].track.album.images[0].url} />
-                <div className="intro">
-                <h4>{data[19].track.name}</h4>
-                <p className="releaseDate">23jan 2023</p>
-                </div>
-              </div> */}
-              </div>
+      <div className="recentc custom">
+        {/* <h3>Recently Played</h3> */}
+        <div className="card">
+          {flag ? (
+            data.map((e: recentType | tracktype) => {
+              let customimage: string = "";
+              let customname: string = "";
+              let customhref: string = "";
+              if ((e as recentType).track) {
+                customimage = (e as recentType).track.album.images[0].url;
+                customname = (e as recentType).track.name;
+                customhref = (e as recentType).track.preview_url;
+              } else {
+                customimage = (e as tracktype).album.images[0].url;
+                customname = (e as tracktype).name;
+                customhref = (e as tracktype).preview_url;
+              }
 
-            </div>
-{/* } */}
+              return (
+                <>
+                  <div
+                    className="playedcard"
+                    onClick={() =>
+                      updatemusic(customhref, customname, "pop", customimage)
+                    }
+                  >
+                    <img src={customimage} />
+                    <div className="intro">
+                      <h4>{customname}</h4>
+                      {/* <p className="releaseDate">23jan 2023</p> */}
+                    </div>
+                  </div>
+                </>
+              );
+            })
+          ) : (
+            <Loading />
+          )}
+        </div>
+      </div>
     </>
-  )
+  );
 }
 
-export default RecentPlayed
+export default RecentPlayed;

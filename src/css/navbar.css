@@ -1,77 +1,82 @@
-.nav{
-    /* display: flex; */
+.nav {
+  /* display: flex; */
 }
-.laptop{
-    /* width:100%; */
+.laptop {
+  /* width:100%; */
 }
-.navbar{
-    background: var(--primary-color);
-    width: 20vw;
-    /* width: 100%; */
-    height:100vh;
-    position: fixed;
-    top:0;
-    text-align: center;
+.navbar {
+  background: var(--primary-color);
+  width: 20vw;
+  /* width: 100%; */
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  text-align: center;
 }
-.navbar .heading{
-    color:var(--font-primary-color);
+.navbar .heading {
+  color: var(--font-primary-color);
 }
-.list{
-    color: var(--font-secondary-color);
+.list {
+  color: var(--font-secondary-color);
 }
-.navbar li{
-    margin: 15px 0;
+.navbar li {
+  margin: 15px 0;
 }
-.navbar .all{
-    margin-top: 15vh;
+.navbar .all {
+  margin-top: 15vh;
 }
-.navbar .my{
-    margin-top: 20px;
+.navbar .my {
+  margin-top: 20px;
 }
-.navbar .active{
-    /* display: inline-block; */
-    padding:5px;
-    border-radius: 10px;
-    background:linear-gradient(to right,var(--shadow-color),rgb(40, 39, 39),rgb(28, 27, 27),var(--primary-color));
-    color:var(--shadow-color);
+.navbar .active {
+  /* display: inline-block; */
+  padding: 5px;
+  border-radius: 10px;
+  background: linear-gradient(
+    to right,
+    var(--shadow-color),
+    rgb(40, 39, 39),
+    rgb(28, 27, 27),
+    var(--primary-color)
+  );
+  color: var(--shadow-color);
 }
 
-.topcontainer{
-width:80vw;
-position: fixed;
-top: 0;
-right: 0;
-/*  */
-z-index: 100;
+.topcontainer {
+  width: 80vw;
+  position: fixed;
+  top: 0;
+  right: 0;
+  /*  */
+  z-index: 100;
 }
-.nav .musiccc{
-    position:fixed;
-    width: 15vw;
-    /* right: 105px; */
-    top: 0;
-    right: 0;
+.nav .musiccc {
+  position: fixed;
+  width: 15vw;
+  /* right: 105px; */
+  top: 0;
+  right: 0;
 }
-.nav .playy{
-    width:100vw; 
-    position: fixed; 
-    bottom: 0;
-    z-index: 100;
+.nav .playy {
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
 }
-@media screen and (min-width:900px) {
-    .navbar{
-        width:10vw;
-    }
-    .topcontainer{
-        width: 90vw;
-    }
+@media screen and (min-width: 900px) {
+  .navbar {
+    width: 10vw;
+  }
+  .topcontainer {
+    width: 90vw;
+  }
 }
-@media screen and (max-width:450px) {
-    .topcontainer{
-        width: 100vw;
-
-    }
-    .nav .playy{
-        bottom: 8vh;
-        z-index: 200;
-    }
+@media screen and (max-width: 450px) {
+  .topcontainer {
+    width: 100vw;
+  }
+  .nav .playy {
+    bottom: 8vh;
+    z-index: 200;
+  }
 }

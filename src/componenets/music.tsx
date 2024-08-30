@@ -44,7 +44,6 @@ function Music() {
       const currentTime = audioRef.current.currentTime;
       setTimeProgress(currentTime);
       progressBarRef.current.value = currentTime.toString();
-      console.log(audioRef);
       progressBarRef.current.style.setProperty(
         "--range-progress",
         `${(currentTime / duration) * 100}%`
@@ -58,7 +57,6 @@ function Music() {
         playAnimationRef.current = requestAnimationFrame(animate);
       };
       playAnimationRef.current = requestAnimationFrame(animate);
-      console.log(3);
     }
   }, [updateProgress, duration, audioRef, progressBarRef]);
 
@@ -160,6 +158,10 @@ function Music() {
         src={currentTrack.src}
         ref={audioRef}
         onLoadedMetadata={onLoadedMetadata}
+        onEnded={() => {
+          setIsPlaying(false);
+          setTimeProgress(0);
+        }}
       />
     </>
   );

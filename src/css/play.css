@@ -1,67 +1,81 @@
-.playmain{
-    /* width:100vw; */
-    /* position: fixed; */
-    /* bottom: 0; */
-    background-color: rgb(49, 48, 48);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 5px 0;
-    background:linear-gradient(to right, var(--shadow-color),var(--background-color),var(--background-color),var(--background-color),var(--background-color));
+.playmain {
+  /* width:100vw; */
+  /* position: fixed; */
+  /* bottom: 0; */
+  background-color: rgb(49, 48, 48);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 0;
+  background: linear-gradient(
+    to right,
+    var(--shadow-color),
+    var(--background-color),
+    var(--background-color),
+    var(--background-color),
+    var(--background-color)
+  );
 }
-.playmain .pause{
-    background: var(--shadow-color);
-    padding: 2px 4px ;
-    border-radius: 50%;
+.playmain .pause {
+  background: var(--shadow-color);
+  padding: 2px 4px;
+  border-radius: 50%;
 }
-.playmain .heading{
-    overflow: hidden;
-    white-space: nowrap;
-    max-width: 15vw;
-    font-size: medium;
-    word-break: break-all;
+.playmain .heading {
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 15vw;
+  font-size: medium;
+  word-break: break-all;
 }
-.playmain .heading .author{
-    font-size: small;
+.playmain .heading .author {
+  font-size: small;
 }
-.playmain .image ,.btn,.audio,.sound,.type{
-    display: flex;
-    /* flex-direction: row; */
-    align-items: center;
+.playmain .image,
+.btn,
+.audio,
+.sound,
+.type {
+  display: flex;
+  /* flex-direction: row; */
+  align-items: center;
 }
-.audio{
-    /* display: flex; */
-    /* justify-content: center; */
-    /* align-items: center; */
-    /* gap:5px; */
-    }
-.playmain .audiohr{
-    width: 30vw;
+.audio {
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* gap:5px; */
 }
-.playmain .soundhr{
-    width:10vw;
+.playmain .audiohr {
+  width: 30vw;
 }
-.playmain .image img{
-margin: 0 5px;
+.playmain .soundhr {
+  width: 10vw;
 }
-.playmain .playicon{
-    margin-right: 5px;
+.playmain .image img {
+  margin: 0 5px;
 }
-.range{
-   /* width: 90%; */
+.playmain .playicon {
+  margin-right: 5px;
 }
-@media screen and (max-width:450px) {
-    .playmain{
-    border-bottom:1px solid var(--shadow-color);
-    }
-    .back,.type,.sound,.audiohr{
-        display: none;
-    }
-    .btn{
-        position: absolute;
-        right:5px;
-    }
-    .playmain .heading{
-        max-width: 50vw;
-    }
+.range {
+  /* width: 90%; */
+}
+@media screen and (max-width: 450px) {
+  .playmain {
+    border-bottom: 1px solid var(--shadow-color);
+  }
+  .back,
+  .type,
+  .sound,
+  .audiohr {
+    display: none;
+  }
+  .btn {
+    position: absolute;
+    right: 5px;
+  }
+  .playmain .heading {
+    max-width: 50vw;
+  }
 }

@@ -77,6 +77,7 @@ function Playcom() {
       }
       updateProgress();
     }
+
     return () => {
       if (playAnimationRef.current !== null) {
         cancelAnimationFrame(playAnimationRef.current);
@@ -145,8 +146,12 @@ function Playcom() {
         src={currentTrack.src}
         ref={audioRef}
         onLoadedMetadata={onLoadedMetadata}
+        onEnded={() => {
+          setIsPlaying(false);
+          setTimeProgress(0);
+        }}
       />
-      {size<450?"":""}
+      {size < 450 ? "" : ""}
       {/* </Link> */}
     </>
   );

@@ -1,10 +1,10 @@
-
-
+import "../css/loading.css"
 function Loading() {
   return (
-    <div>
-      loading
+    <div className="container custom">
+<div className="loader "></div>
     </div>
+
   )
 }
 
