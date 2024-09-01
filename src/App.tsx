@@ -8,6 +8,7 @@ import All from './componenets/all';
 import RecentPlayed from './componenets/recentPlayed'
 import Playlist from "./componenets/playlist";
 import Playlistcontainer from "./componenets/playlistcontainer";
+import  Album  from "./componenets/album";
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="artist" element={<Artist/>} />
           <Route path="playlist" element={<Playlist/>}/>
           <Route path="recent" element={<RecentPlayed/>} />
+          <Route path="album" element={<Album/>}/>
           </Route>
           <Route path="music" element={<Music/>} />
           <Route path="search" element={<Searchcom/>} />

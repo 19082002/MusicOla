@@ -56,8 +56,6 @@ function All() {
   const [data1, setData1] = useState<rlsdatatype[]>([]);
   const [data2, setData2] = useState<artisttype[]>([]);
   const [data3, setData3] = useState<recentType[]>([]);
-  // const [artist, setArtist] = useState<artisttype[]>([]);
-  // const [name, setName] = useState<string>("");
   async function getResponse() {
     await fetch(
       `https://v1.nocodeapi.com/${user}/spotify/${mykey}/browse/new`,

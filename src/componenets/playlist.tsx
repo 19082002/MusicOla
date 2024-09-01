@@ -35,6 +35,16 @@ function Playlist() {
       .then(() => setFlag(true))
       .then(() => console.log("artistplaylist"));
   }
+  async function albumplaylist(nam: string) {
+    await fetch(
+      `https://v1.nocodeapi.com/${user}/spotify/${mykey}/browse/categoryPlaylist?category_id=${nam} `,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => setData(result.playlists.items))
+      .then(() => setFlag(true))
+      .then(() => console.log("albumplaylist"));
+  }
   // async function myplaylist(){
   // const response=await fetch(
   //   `https://v1.nocodeapi.com/${user}/spotify/${mykey}/myPlaylists`,
@@ -48,7 +58,8 @@ function Playlist() {
   const location = useLocation();
   const props = location.state;
   useEffect(() => {
-    artistplaylist(props.data);
+   if(props.option==1) artistplaylist(props.data);
+    if(props.option==2)albumplaylist(props.data);
   }, []);
   return (
     <>

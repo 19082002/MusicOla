@@ -14,7 +14,8 @@ function Sidebar() {
             <Link to="/artist">Artist</Link>
           </li>
           <li className={flag == 3 ? "active" : ""} onClick={() => setFlag(3)}>
-            Album
+            <Link to="/album">Album</Link>
+           
           </li>
         </ul>
       </div>

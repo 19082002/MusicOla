@@ -53,7 +53,7 @@ function Top() {
               className={"column " + (flag == 4 ? "active" : "")}
               onClick={() => setFlag(4)}
             >
-              Albums
+              <Link to="/album">Album</Link>
             </div>
           </div>
         </div>
