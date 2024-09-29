@@ -5,11 +5,18 @@ import "../css/playlistcontainer.css";
 import { DotIcon, Play, MoveLeft } from "lucide-react";
 import Loading from "./loading";
 import { useAudioPlayerContext } from "./audioplay";
+import Playcom from "./play.tsx";
 function Playlistcontainer() {
   const mykey = import.meta.env.VITE_API_KEY;
   const user = "sunenjoy";
-  const { setCurrentTrack, setIsPlaying, setTimeProgress } =
-    useAudioPlayerContext();
+  const {
+    setIndex,
+    currentTracks,
+    setCurrentTracks,
+    setCurrentTrack,
+    setIsPlaying,
+    setTimeProgress,
+  } = useAudioPlayerContext();
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
   const requestOptions: RequestInit = {
@@ -47,22 +54,21 @@ function Playlistcontainer() {
   useEffect(() => {
     listResponse(props.data);
   }, []);
-  const updatemusic = (
-    url: string,
-    name: string,
-    author: string,
-    image: string
-  ) => {
+  const updatemusic = (url: string, name: string, image: string) => {
     setCurrentTrack({
       title: name,
       src: url,
-      author: author,
       thumbnail: image,
     });
     setTimeProgress(0);
     setIsPlaying(true);
+    const i = currentTracks.findIndex((obj) => {
+      return obj.src == url;
+    });
+    setIndex(i);
     console.log(3);
   };
+  // const url=size<900?"/music":""
   return (
     <>
       <div className="listcontainer">
@@ -75,6 +81,12 @@ function Playlistcontainer() {
         <div className="card">
           {flag ? (
             data.map((e) => {
+              currentTracks.push({
+                title: e.name,
+                src: e.preview_url,
+                thumbnail: e.album.images[0].url,
+              });
+              setCurrentTracks(currentTracks);
               return (
                 <>
                   <div className="playedcard">
@@ -82,19 +94,18 @@ function Playlistcontainer() {
                     <h4>{e.name}</h4>
                     <p className="releaseDate">{e.album.release_date}</p>
                     <div className="icon">
-                      <Link to="/music">
-                        <Play
-                          onClick={() =>
-                            updatemusic(
-                              e.preview_url,
-                              e.name,
-                              "pop",
-                              e.album.images[0].url
-                            )
-                          }
-                        />
-                        <DotIcon />
-                      </Link>
+                      {/* <Link to={`${url}`}> */}
+                      <Play
+                        onClick={() =>
+                          updatemusic(
+                            e.preview_url,
+                            e.name,
+                            e.album.images[0].url
+                          )
+                        }
+                      />
+                      <DotIcon />
+                      {/* </Link> */}
                     </div>
                   </div>
                 </>
@@ -104,6 +115,9 @@ function Playlistcontainer() {
             <Loading />
           )}
         </div>
+      </div>
+      <div className="playy">
+        <Playcom />
       </div>
     </>
   );

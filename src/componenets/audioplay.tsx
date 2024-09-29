@@ -11,11 +11,13 @@ import { tracks } from "./track";
 export interface Track {
   title: string;
   src: string;
-  author: string;
   thumbnail: string;
 }
+
 interface AudioPlayerContextType {
+  currentTracks: Track[];
   currentTrack: Track;
+  setCurrentTracks: Dispatch<SetStateAction<Track[]>>;
   setCurrentTrack: Dispatch<SetStateAction<Track>>;
   setTimeProgress: Dispatch<SetStateAction<number>>;
   setDuration: Dispatch<SetStateAction<number>>;
@@ -25,20 +27,28 @@ interface AudioPlayerContextType {
   isPlaying: boolean;
   duration: number;
   timeProgress: number;
+  index: number;
+  setIndex: Dispatch<SetStateAction<number>>;
 }
 const AudioPlayerContext = createContext<AudioPlayerContextType | undefined>(
   undefined
 );
 export const AudioPlayerProvider = ({ children }: { children: ReactNode }) => {
-  const [currentTrack, setCurrentTrack] = useState<Track>(tracks);
+  const [currentTracks, setCurrentTracks] = useState<Track[]>(tracks);
+  const [currentTrack, setCurrentTrack] = useState<Track>(tracks[0]);
   const [timeProgress, setTimeProgress] = useState<number>(0);
   const [duration, setDuration] = useState<number>(0);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const progressBarRef = useRef<HTMLInputElement>(null);
+  const [index, setIndex] = useState<number>(0);
   const contextValue = {
+    index,
+    setIndex,
+    currentTracks,
     currentTrack,
     setCurrentTrack,
+    setCurrentTracks,
     isPlaying,
     setIsPlaying,
     audioRef,

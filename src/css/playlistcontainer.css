@@ -54,6 +54,11 @@
 .listcontainer .playedcard .icon {
   display: flex;
 }
+.playy{
+  width:100vw;
+  position: sticky;
+  bottom: 0;
+}
 @media screen and (max-width: 450px) {
   .listcontainer {
     display: block;

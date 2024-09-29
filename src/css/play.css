@@ -62,6 +62,9 @@
   /* width: 90%; */
 }
 @media screen and (max-width: 450px) {
+  .image{
+    width: 80vw;
+  }
   .playmain {
     border-bottom: 1px solid var(--shadow-color);
   }

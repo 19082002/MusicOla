@@ -4,8 +4,14 @@ import "../css/recent.css";
 import { useEffect, useState } from "react";
 import { useAudioPlayerContext } from "./audioplay";
 function RecentPlayed() {
-  const { setCurrentTrack, setIsPlaying, setTimeProgress } =
-    useAudioPlayerContext();
+  const {
+    setIndex,
+    currentTracks,
+    setCurrentTracks,
+    setCurrentTrack,
+    setIsPlaying,
+    setTimeProgress,
+  } = useAudioPlayerContext();
   const mykey = import.meta.env.VITE_API_KEY;
   const user = "sunenjoy";
   const myHeaders = new Headers();
@@ -58,23 +64,22 @@ function RecentPlayed() {
   useEffect(() => {
     if (props.option == 1) trackResponse(props.data);
     if (props.option == 2) recently();
+    setCurrentTracks([]);
   }, [props]);
 
-  const updatemusic = (
-    url: string,
-    name: string,
-    author: string,
-    image: string
-  ) => {
+  const updatemusic = (url: string, name: string, image: string) => {
     // setIsPlaying(false)
     setCurrentTrack({
       title: name,
       src: url,
-      author: author,
       thumbnail: image,
     });
     setTimeProgress(0);
     setIsPlaying(true);
+    const i = currentTracks.findIndex((obj) => {
+      return obj.src == url;
+    });
+    setIndex(i);
     console.log(3);
   };
 
@@ -97,13 +102,19 @@ function RecentPlayed() {
                 customname = (e as tracktype).name;
                 customhref = (e as tracktype).preview_url;
               }
+              currentTracks.push({
+                title: customname,
+                src: customhref,
 
+                thumbnail: customimage,
+              });
+              setCurrentTracks(currentTracks);
               return (
                 <>
                   <div
                     className="playedcard"
                     onClick={() =>
-                      updatemusic(customhref, customname, "pop", customimage)
+                      updatemusic(customhref, customname, customimage)
                     }
                   >
                     <img src={customimage} />

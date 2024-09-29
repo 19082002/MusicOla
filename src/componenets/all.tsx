@@ -9,8 +9,14 @@ import { useAudioPlayerContext } from "./audioplay";
 function All() {
   const mykey = import.meta.env.VITE_API_KEY;
   const user = "sunenjoy";
-  const { setCurrentTrack, setIsPlaying, setTimeProgress } =
-  useAudioPlayerContext();
+  const {
+    setIndex,
+    currentTracks,
+    setCurrentTracks,
+    setCurrentTrack,
+    setIsPlaying,
+    setTimeProgress,
+  } = useAudioPlayerContext();
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
   const requestOptions: RequestInit = {
@@ -90,21 +96,19 @@ function All() {
   useEffect(() => {
     getResponse();
   }, []);
-  const updatemusic = (
-    url: string,
-    name: string,
-    author: string,
-    image: string
-  ) => {
+  const updatemusic = (url: string, name: string, image: string) => {
     // setIsPlaying(false)
     setCurrentTrack({
       title: name,
       src: url,
-      author: author,
       thumbnail: image,
     });
     setTimeProgress(0);
     setIsPlaying(true);
+    const i = currentTracks.findIndex((obj) => {
+      return obj.src == url;
+    });
+    setIndex(i);
     console.log(3);
   };
 
@@ -144,11 +148,14 @@ function All() {
               data2.map((element: artisttype) => {
                 return (
                   <>
-                  <Link to="/playlist" state={{ data: element.name }}>
-                    <div className="image">
-                      <img src={element.images[0].url} />
-                      <p>{element.name}</p>
-                    </div>
+                    <Link
+                      to="/playlist"
+                      state={{ data: element.name, option: 1 }}
+                    >
+                      <div className="image">
+                        <img src={element.images[0].url} />
+                        <p>{element.name}</p>
+                      </div>
                     </Link>
                   </>
                 );
@@ -167,10 +174,23 @@ function All() {
           </div>
           {flag3 ? (
             data3.map((element) => {
+              currentTracks.push({
+                title: element.track.name,
+                src: element.track.preview_url,
+                thumbnail: element.track.album.images[0].url,
+              });
+              setCurrentTracks(currentTracks);
               return (
-                <div className="playedcard"  onClick={() =>
-                  updatemusic(element.track.preview_url, element.track.name, "pop", element.track.album.images[0].url)
-                }>
+                <div
+                  className="playedcard"
+                  onClick={() =>
+                    updatemusic(
+                      element.track.preview_url,
+                      element.track.name,
+                      element.track.album.images[0].url
+                    )
+                  }
+                >
                   <img src={element.track.album.images[0].url} />
                   <h4>{element.track.name}</h4>
                   <p className="releaseDate">

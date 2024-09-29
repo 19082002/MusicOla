@@ -15,6 +15,10 @@ import { useAudioPlayerContext } from "./audioplay";
 function Music() {
   // const {  } = useAudioPlayerContext();
   const {
+    currentTracks,
+    index,
+    setIndex,
+    setCurrentTrack,
     currentTrack,
     progressBarRef,
     audioRef,
@@ -42,6 +46,10 @@ function Music() {
     if (isRepeat) setIsRepeat(false);
     if (audioRef.current && progressBarRef.current && duration) {
       const currentTime = audioRef.current.currentTime;
+      if (audioRef.current.currentTime === duration) {
+        setTimeProgress(0);
+        setIsPlaying(false);
+      }
       setTimeProgress(currentTime);
       progressBarRef.current.value = currentTime.toString();
       progressBarRef.current.style.setProperty(
@@ -102,6 +110,18 @@ function Music() {
       }
     }
   };
+  const next = () => {
+    setIndex((index + 1) % currentTracks.length);
+    setCurrentTrack(currentTracks[index]);
+    setTimeProgress(0);
+    setIsPlaying(true);
+  };
+  const prev = () => {
+    setIndex((index - 1) % currentTracks.length);
+    setCurrentTrack(currentTracks[index]);
+    setTimeProgress(0);
+    setIsPlaying(true);
+  };
   return (
     <>
       <div className="musiccontain">
@@ -118,7 +138,7 @@ function Music() {
             <div className="name">
               <div className="heading">
                 <p>{currentTrack.title}</p>
-                <p className="author">{currentTrack.author}</p>
+                {/* <p className="author">{currentTrack.author}</p> */}
               </div>
               <Heart style={{ width: "20px" }} />
             </div>
@@ -138,7 +158,7 @@ function Music() {
                 style={{ width: "20px" }}
                 onClick={() => setIsRepeat((prev) => !prev)}
               />
-              <SkipBack style={{ width: "20px" }} />
+              <SkipBack style={{ width: "20px" }} onClick={prev} />
               <button onClick={() => setIsPlaying((prev) => !prev)}>
                 {isPlaying ? (
                   <Pause className="pause" style={{ width: "20px" }} />
@@ -147,7 +167,7 @@ function Music() {
                 )}
               </button>
 
-              <SkipForward style={{ width: "20px" }} />
+              <SkipForward style={{ width: "20px" }} onClick={next} />
               <Volume2 style={{ width: "20px" }} />
             </div>
           </div>

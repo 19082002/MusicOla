@@ -4,7 +4,6 @@ import {
   SkipBack,
   SkipForward,
   Pause,
-  Volume2,
   Repeat2,
   ListMusic,
   Play,
@@ -15,6 +14,10 @@ import { useCallback, useEffect, useRef } from "react";
 function Playcom() {
   const size = window.innerWidth;
   const {
+    currentTracks,
+    index,
+    setIndex,
+    setCurrentTrack,
     currentTrack,
     isPlaying,
     setIsPlaying,
@@ -93,12 +96,25 @@ function Playcom() {
       }
     }
   };
+  const next = () => {
+    setIndex((index + 1) % currentTracks.length);
+    setCurrentTrack(currentTracks[index]);
+    setTimeProgress(0);
+    setIsPlaying(true);
+  };
+  const prev = () => {
+    setIndex((index - 1) % currentTracks.length);
+    setCurrentTrack(currentTracks[index]);
+    setTimeProgress(0);
+    setIsPlaying(true);
+  };
+  const url = size < 900 ? "/music" : "";
   return (
     <>
       {/* <audio src={currentTrack.src} ref={audioRef}/> */}
 
       <div className="playmain">
-        <Link to="/music">
+        <Link to={`${url}`}>
           <div className="image">
             <img
               src={currentTrack.thumbnail}
@@ -106,12 +122,15 @@ function Playcom() {
             />
             <div className="heading">
               <p>{currentTrack.title}</p>
-              <p className="author">{currentTrack.author}</p>
             </div>
           </div>
         </Link>
         <div className="btn">
-          <SkipBack className="back playicon" style={{ width: "18px" }} />
+          <SkipBack
+            className="back playicon"
+            style={{ width: "18px" }}
+            onClick={prev}
+          />
           <button onClick={() => setIsPlaying((prev) => !prev)}>
             {isPlaying ? (
               <Pause className="pause" style={{ width: "20px" }} />
@@ -119,7 +138,11 @@ function Playcom() {
               <Play className="pause" style={{ width: "20px" }} />
             )}
           </button>
-          <SkipForward className="forward playicon" style={{ width: "18px" }} />
+          <SkipForward
+            className="forward playicon"
+            style={{ width: "18px" }}
+            onClick={next}
+          />
         </div>
         <div className="audio">
           <div className="audiohr">
@@ -132,10 +155,10 @@ function Playcom() {
             />
           </div>
         </div>
-        <div className="sound">
+        {/* <div className="sound">
           <Volume2 className="playicon" style={{ width: "18px" }} />
           <hr className="soundhr" />
-        </div>
+        </div> */}
         <div className="type">
           <Heart className="playicon" style={{ width: "18px" }} />
           <Repeat2 className="playicon" style={{ width: "18px" }} />

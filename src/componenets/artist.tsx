@@ -44,7 +44,7 @@ function Artist() {
             data.map((e: artisttype) => {
               return (
                 <>
-                  <Link to="/playlist" state={{ data: e.name ,option:1}}>
+                  <Link to="/playlist" state={{ data: e.name, option: 1 }}>
                     <div className="image">
                       <img src={e.images[0].url} />
                       <h1>{e.name}</h1>
@@ -56,7 +56,6 @@ function Artist() {
           ) : (
             <Loading />
           )}
-
         </div>
       </div>
     </>
