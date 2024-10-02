@@ -126,11 +126,13 @@ function Playcom() {
           </div>
         </Link>
         <div className="btn">
-          <SkipBack
-            className="back playicon"
-            style={{ width: "18px" }}
-            onClick={prev}
-          />
+          <button>
+            <SkipBack
+              className="back playicon"
+              style={{ width: "18px" }}
+              onClick={prev}
+            />
+          </button>
           <button onClick={() => setIsPlaying((prev) => !prev)}>
             {isPlaying ? (
               <Pause className="pause" style={{ width: "20px" }} />
@@ -138,11 +140,13 @@ function Playcom() {
               <Play className="pause" style={{ width: "20px" }} />
             )}
           </button>
-          <SkipForward
-            className="forward playicon"
-            style={{ width: "18px" }}
-            onClick={next}
-          />
+          <button>
+            <SkipForward
+              className="forward playicon"
+              style={{ width: "18px" }}
+              onClick={next}
+            />
+          </button>
         </div>
         <div className="audio">
           <div className="audiohr">

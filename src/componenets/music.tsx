@@ -8,6 +8,7 @@ import {
   Repeat2,
   ArrowLeft,
   Play,
+  HomeIcon
 } from "lucide-react";
 import "../css/music.css";
 import { Link } from "react-router-dom";
@@ -127,7 +128,7 @@ function Music() {
       <div className="musiccontain">
         <div className="musicmain">
           <Link to="/">
-            <ArrowLeft className="back" />
+            <HomeIcon className="back" />
           </Link>
           <div className="card">
             <div className="image">

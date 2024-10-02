@@ -21,6 +21,12 @@
   padding: 30px 10px;
   position: relative;
 }
+.musicmain .back{
+  position:absolute;
+  top: 3px;
+  right: 20px;
+  width:1.2rem
+}
 .musiccontain .progressbar {
   display: flex;
   justify-content: center;

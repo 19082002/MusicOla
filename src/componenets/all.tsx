@@ -84,7 +84,13 @@ function All() {
       requestOptions
     )
       .then((response) => response.json())
-      .then((result) => setData3(result.items))
+      .then((result) => {setData3(result.items);
+        setCurrentTrack({
+          title: result.items[0].track.name,
+          src: result.items[0].track.preview_url,
+          thumbnail: result.items[0].track.album.images[0].url,
+        })    
+      })
       .then(() => setFlag3(true))
       .then(() => console.log("fetch3"));
     console.log("all");

@@ -37,8 +37,12 @@
 .sound,
 .type {
   display: flex;
-  /* flex-direction: row; */
+  flex-direction:row;
   align-items: center;
+}
+.playicon{
+  margin-left: 3px;
+  color:var(--shadow-color) ;
 }
 .audio {
   /* display: flex; */
