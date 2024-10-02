@@ -6,7 +6,7 @@ import {
   Pause,
   Volume2,
   Repeat2,
-  ArrowLeft,
+  // ArrowLeft,
   Play,
   HomeIcon
 } from "lucide-react";
